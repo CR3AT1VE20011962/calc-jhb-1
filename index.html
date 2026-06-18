@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City of Joburg 2026/2027 Tariff Increase Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .header {
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #1a365d;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            color: #718096;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper .currency {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 10px 10px 30px;
+            font-size: 16px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #3182ce;
+        }
+        .grid-2 {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        .grid-col {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+        }
+        .grid-col:first-child {
+            padding-right: 15px;
+        }
+        .grid-col:last-child {
+            padding-left: 15px;
+        }
+        .results-box {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .results-table th {
+            color: #4a5568;
+            font-weight: 600;
+        }
+        .results-table td {
+            color: #2d3748;
+        }
+        .total-row {
+            background-color: #ebf8ff;
+            font-weight: bold;
+            font-size: 16px;
+            color: #2b6cb0 !important;
+        }
+        .total-row-vat {
+            background-color: #e6fffa;
+            font-weight: bold;
+            font-size: 18px;
+            color: #234e52 !important;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #edf2f7;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>JHB 2026/2027 Tariff Increase Calculator</h1>
+        <p>Calculate the monthly financial impact of the newly approved City of Johannesburg municipal rate hikes.</p>
+    </div>
+
+    <div class="grid-2">
+        <div class="grid-col">
+            <div class="form-group">
+                <label for="water">Current Monthly Water Bill</label>
+                <div class="input-wrapper">
+                    <span class="currency">R</span>
+                    <input type="number" id="water" value="500" min="0" oninput="calculateImpact()">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sanitation">Current Monthly Sanitation Bill</label>
+                <div class="input-wrapper">
+                    <span class="currency">R</span>
+                    <input type="number" id="sanitation" value="300" min="0" oninput="calculateImpact()">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="electricity">Current Monthly Electricity Bill</label>
+                <div class="input-wrapper">
+                    <span class="currency">R</span>
+                    <input type="number" id="electricity" value="1200" min="0" oninput="calculateImpact()">
+                </div>
+            </div>
+        </div>
+        <div class="grid-col">
+            <div class="form-group">
+                <label for="refuse">Current Monthly Refuse Bill</label>
+                <div class="input-wrapper">
+                    <span class="currency">R</span>
+                    <input type="number" id="refuse" value="250" min="0" oninput="calculateImpact()">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rates">Current Monthly Property Rates</label>
+                <div class="input-wrapper">
+                    <span class="currency">R</span>
+                    <input type="number" id="rates" value="600" min="0" oninput="calculateImpact()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-box">
+        <h2 style="margin-top:0; font-size: 18px; color: #1a365d;">Estimated Monthly Increase Breakdown</h2>
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Approved Hike</th>
+                    <th>Monthly Increase (Excl. VAT)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Water</td>
+                    <td><span class="badge">12.5%</span></td>
+                    <td id="inc-water">R0.00</td>
+                </tr>
+                <tr>
+                    <td>Sanitation</td>
+                    <td><span class="badge">11.0%</span></td>
+                    <td id="inc-sanitation">R0.00</td>
+                </tr>
+                <tr>
+                    <td>Electricity</td>
+                    <td><span class="badge">8.63%</span></td>
+                    <td id="inc-electricity">R0.00</td>
+                </tr>
+                <tr>
+                    <td>Refuse Removal</td>
+                    <td><span class="badge">6.2%</span></td>
+                    <td id="inc-refuse">R0.00</td>
+                </tr>
+                <tr>
+                    <td>Property Rates</td>
+                    <td><span class="badge">3.6%</span></td>
+                    <td id="inc-rates">R0.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Monthly Increase</td>
+                    <td>—</td>
+                    <td id="total-ex-vat">R0.00</td>
+                </tr>
+                <tr class="total-row-vat">
+                    <td>Total Increase (Incl. 15% VAT)</td>
+                    <td>—</td>
+                    <td id="total-inc-vat">R0.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function calculateImpact() {
+        const rates = {
+            water: 0.125,
+            sanitation: 0.11,
+            electricity: 0.0863,
+            refuse: 0.062,
+            rates: 0.036
+        };
+
+        const vWater = parseFloat(document.getElementById('water').value) || 0;
+        const vSanitation = parseFloat(document.getElementById('sanitation').value) || 0;
+        const vElectricity = parseFloat(document.getElementById('electricity').value) || 0;
+        const vRefuse = parseFloat(document.getElementById('refuse').value) || 0;
+        const vRates = parseFloat(document.getElementById('rates').value) || 0;
+
+        const incWater = vWater * rates.water;
+        const incSanitation = vSanitation * rates.sanitation;
+        const incElectricity = vElectricity * rates.electricity;
+        const incRefuse = vRefuse * rates.refuse;
+        const incRates = vRates * rates.rates;
+
+        document.getElementById('inc-water').innerText = 'R' + incWater.toFixed(2);
+        document.getElementById('inc-sanitation').innerText = 'R' + incSanitation.toFixed(2);
+        document.getElementById('inc-electricity').innerText = 'R' + incElectricity.toFixed(2);
+        document.getElementById('inc-refuse').innerText = 'R' + incRefuse.toFixed(2);
+        document.getElementById('inc-rates').innerText = 'R' + incRates.toFixed(2);
+
+        const totalExVat = incWater + incSanitation + incElectricity + incRefuse + incRates;
+        const totalIncVat = totalExVat * 1.15;
+
+        document.getElementById('total-ex-vat').innerText = 'R' + totalExVat.toFixed(2);
+        document.getElementById('total-inc-vat').innerText = 'R' + totalIncVat.toFixed(2);
+    }
+
+    // Initial run
+    calculateImpact();
+</script>
+
+</body>
+</html>
