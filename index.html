@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f1eb">
+  <meta name="description" content="Estimate how City of Johannesburg municipal tariff increases from 1 July 2026 may affect your household bill.">
+  <title>Johannesburg Tariff Impact Calculator | CRA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Skip to calculator</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Centre for Risk Analysis — Johannesburg Tariff Impact Calculator">
+        <img src="assets/cra-logo.png" alt="Centre for Risk Analysis">
+      </a>
+      <div class="product-lockup" aria-label="Product name">
+        <span>Public finance tool</span>
+        <strong>Johannesburg Tariff Impact</strong>
+      </div>
+      <div class="edition"><span aria-hidden="true"></span>2026/27 estimate</div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <div class="eyebrow"><span>Johannesburg</span><span>Effective 1 July 2026</span></div>
+        <h1 id="page-title">What will the new Joburg tariffs cost you?</h1>
+        <p>Enter your property value and monthly usage to compare your estimated municipal bill before and after the new tariffs.</p>
+      </div>
+      <div class="intro-note">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 8v5m0 3.5v.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        <p><strong>Planning estimate</strong><span>Based on the City’s approved average increases and published 2025/26 tariff bands.</span></p>
+      </div>
+    </section>
+
+    <section class="tariff-context" aria-labelledby="tariff-context-title">
+      <div class="tariff-context-heading">
+        <span>City-approved context</span>
+        <h2 id="tariff-context-title">Approved average increases</h2>
+        <p>Effective from 1 July 2026</p>
+      </div>
+      <table>
+        <thead><tr><th scope="col">Municipal service</th><th scope="col">Average increase</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><i class="service-dot electricity"></i>Electricity</th><td>8.63%</td></tr>
+          <tr><th scope="row"><i class="service-dot water"></i>Water</th><td>12.5%</td></tr>
+          <tr><th scope="row"><i class="service-dot sanitation"></i>Sanitation</th><td>11%</td></tr>
+          <tr><th scope="row"><i class="service-dot refuse"></i>Refuse removal</th><td>6.2%</td></tr>
+          <tr><th scope="row"><i class="service-dot rates"></i>Property rates</th><td>3.6%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="calculator-workspace" id="calculator" aria-label="Municipal bill calculator">
+      <form id="tariff-form" class="inputs" autocomplete="off">
+        <div class="form-intro">
+          <div><span>Household details</span><h2>Build your estimate</h2></div>
+          <p>All amounts update immediately. You can exclude services that do not appear on your municipal account.</p>
+        </div>
+
+        <section class="input-card" aria-labelledby="property-heading">
+          <div class="section-heading">
+            <div class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5.5 8.5V21h13V8.5M9 21v-7h6v7"/></svg></div>
+            <div><span>01 · Property</span><h3 id="property-heading">Your property</h3><p>Used for property rates and refuse.</p></div>
+          </div>
+          <div class="field-grid">
+            <label class="field wide">
+              <span>Municipal property value</span>
+              <div class="money-input"><b>R</b><input id="property-value" type="number" min="0" step="10000" inputmode="numeric" placeholder="e.g. 1 500 000" aria-describedby="property-value-help"></div>
+              <small id="property-value-help">Use the municipal valuation shown on your rates account.</small>
+            </label>
+            <div class="field">
+              <span>Property category</span>
+              <div class="locked-field"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 10V7a4 4 0 0 1 8 0v3m-9 0h10a2 2 0 0 1 2 2v7H5v-7a2 2 0 0 1 2-2Z"/></svg><strong>Residential</strong><span>Fixed</span></div>
+            </div>
+            <label class="field">
+              <span>Rates rebate</span>
+              <select id="rates-rebate" aria-describedby="rates-rebate-help">
+                <option value="" selected disabled>Select a rebate</option>
+                <option value="none">None</option>
+                <option value="p70">Pensioner 70+ · 100% up to R2m</option>
+                <option value="p100">Qualifying pensioner · 100% up to R1.5m</option>
+                <option value="p50">Qualifying pensioner · 50% up to R1.5m</option>
+              </select>
+              <small id="rates-rebate-help">Eligibility and value or income limits apply.</small>
+            </label>
+            <p class="residential-note wide">This calculator is configured for residential estimates. Commercial electricity, water, sanitation and refuse accounts use different tariff structures and require a separate calculation.</p>
+            <div class="vat-status wide"><strong>VAT: 0%</strong><span>Property rates are VAT-exempt.</span></div>
+          </div>
+        </section>
+
+        <section class="input-card" id="electricity-section" aria-labelledby="electricity-heading">
+          <div class="section-heading">
+            <div class="section-icon electricity-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 5.5 13h6L10 22l8.5-12H13V2Z"/></svg></div>
+            <div><span>02 · Electricity</span><h3 id="electricity-heading">Electricity</h3><p>City Power residential prepaid categories.</p></div>
+          </div>
+          <div class="field-grid">
+            <label class="field wide">
+              <span>Tariff category</span>
+              <select id="electricity-category">
+                <option value="" selected disabled>Select a City Power tariff</option>
+                <option value="high">Residential Prepaid High</option>
+                <option value="low">Residential Prepaid Low (indigent)</option>
+              </select>
+              <small><strong>Choose High</strong> for a standard City Power residential prepaid account. Choose <strong>Low (indigent)</strong> only if the City has approved your account for the indigent/ESP tariff. Low does not simply mean low usage.</small>
+            </label>
+            <label class="field" id="electricity-use-field">
+              <span>Electricity used monthly</span>
+              <div class="unit-input"><input id="electricity-use" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 500"><b>kWh</b></div>
+            </label>
+            <label class="field" id="electricity-free-field">
+              <span>Free electricity allocation</span>
+              <div class="unit-input"><input id="electricity-free" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 50"><b>kWh</b></div>
+              <small>Enter the free units shown on your account or token.</small>
+            </label>
+            <div class="prepaid-guidance-cra wide" id="prepaid-guidance">
+              <div>
+                <strong>Using prepaid electricity?</strong>
+                <p>Your municipal bill may show R0 for electricity usage because you pay when buying tokens. This calculator still includes the cost of those prepaid units so that your total reflects your full monthly household spend.</p>
+              </div>
+              <div>
+                <strong>Prepaid directly from Eskom?</strong>
+                <p>This calculator is currently based on City Power tariff structures. Estimates may not accurately reflect Eskom Direct residential tariffs. You can continue, but treat the electricity result with caution.</p>
+              </div>
+            </div>
+            <p class="electricity-small-note wide"><strong>Additional electricity costs:</strong> Your account or prepaid arrangement may include fixed, service, capacity or network charges. This calculator estimates usage only and excludes these charges.</p>
+          </div>
+        </section>
+
+        <section class="input-card" id="water-sanitation-card" aria-labelledby="water-sanitation-heading">
+          <div class="section-heading">
+            <div class="section-icon services-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 11h5v5H5zm9 0h5v5h-5zM5 19h14"/></svg></div>
+            <div><span>03 · Municipal services</span><h3 id="water-sanitation-heading">Water &amp; sanitation</h3><p>Calculated together with one combined 15% VAT total.</p></div>
+          </div>
+          <div class="service-subsection" id="water-section">
+            <div class="subsection-label"><span><i class="service-dot water"></i>Water consumption</span><small>Sliding scale · before VAT</small></div>
+            <div class="field-grid">
+              <label class="field wide">
+                <span>Water meter</span>
+                <select id="water-meter">
+                  <option value="" selected disabled>Select a water meter</option>
+                  <option value="conventional">Conventional meter</option>
+                  <option value="prepaid">Prepayment meter</option>
+                  <option value="none">Exclude water</option>
+                </select>
+              </label>
+              <label class="field" id="water-use-field">
+                <span>Water used monthly</span>
+                <div class="unit-input"><input id="water-use" type="number" min="0" step="0.1" inputmode="decimal" placeholder="e.g. 15"><b>kℓ</b></div>
+              </label>
+              <label class="field" id="water-free-field">
+                <span>Units charged at R0</span>
+                <div class="unit-input"><input id="water-free" type="number" min="0" step="0.001" inputmode="decimal" placeholder="e.g. 5.717"><b>kℓ</b></div>
+                <small>Enter the exact Step 1 quantity shown at R0 on your bill. It may be prorated for the billing period.</small>
+              </label>
+              <div class="levy-panel wide" id="demand-levy-panel">
+                <div class="levy-heading"><span><i class="service-dot water"></i><strong>Demand management levy</strong></span><small>Optional · before VAT</small></div>
+                <div class="levy-detail single-field">
+                  <label class="field" id="demand-levy-field"><span>Your current levy before VAT</span><div class="money-input"><b>R</b><input id="demand-levy-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Enter amount"></div></label>
+                </div>
+                <p>Enter the levy shown on your own account. Leave this blank if no levy appears. It is added to water and sanitation before the combined 15% VAT is calculated.</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-subsection" id="sanitation-section">
+            <div class="subsection-label"><span><i class="service-dot sanitation"></i>Sanitation</span><small>Based on ERF size · includes 15% VAT</small></div>
+            <label class="field">
+              <span>Exact property/ERF size</span>
+              <div class="unit-input"><input id="erf-size" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 336"><b>m²</b></div>
+              <small id="sanitation-band-note">Sanitation is charged by ERF-size band. Entering the exact size selects the correct band automatically.</small>
+            </label>
+          </div>
+          <div class="tax-summary" id="water-sanitation-tax-summary">
+            <div class="tax-summary-heading"><span>Water &amp; sanitation VAT calculation</span><small>Monthly estimate</small></div>
+            <div class="tax-summary-grid">
+              <span></span><b>Before 1 July</b><b>From 1 July</b>
+              <span>Water usage</span><strong id="ws-water-before">R0.00</strong><strong id="ws-water-after">R0.00</strong>
+              <span>Demand levy</span><strong id="ws-levy-before">R0.00</strong><strong id="ws-levy-after">R0.00</strong>
+              <span>Sanitation</span><strong id="ws-sanitation-before">R0.00</strong><strong id="ws-sanitation-after">R0.00</strong>
+              <span class="summary-subtotal">Subtotal before VAT</span><strong class="summary-subtotal" id="ws-subtotal-before">R0.00</strong><strong class="summary-subtotal" id="ws-subtotal-after">R0.00</strong>
+              <span>VAT at 15%</span><strong id="ws-vat-before">R0.00</strong><strong id="ws-vat-after">R0.00</strong>
+              <span class="summary-total">Total including VAT</span><strong class="summary-total" id="ws-total-before">R0.00</strong><strong class="summary-total" id="ws-total-after">R0.00</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="input-card" id="refuse-card" aria-labelledby="refuse-heading">
+          <div class="section-heading">
+            <div class="section-icon refuse-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 14H7L6 7m4 4v6m4-6v6"/></svg></div>
+            <div><span>04 · Municipal services</span><h3 id="refuse-heading">Refuse removal</h3><p>A separate residential charge with its own 15% VAT.</p></div>
+          </div>
+          <div class="refuse-subsection" id="refuse-section">
+            <label class="switch-row">
+              <span><i class="service-dot refuse"></i><strong>Include refuse removal</strong><small>Residential property-value band · includes 15% VAT</small></span>
+              <input id="include-refuse" type="checkbox"><i class="switch" aria-hidden="true"></i>
+            </label>
+            <p class="service-explainer" id="refuse-band-note">Enter your municipal property value above to determine the residential refuse band. Refuse is a fixed monthly charge by property-value band, with 15% VAT added.</p>
+            <div class="tax-summary refuse-tax-summary" id="refuse-tax-summary">
+              <div class="tax-summary-heading"><span>Refuse VAT calculation</span><small>Monthly estimate</small></div>
+              <div class="tax-summary-grid compact">
+                <span></span><b>Before 1 July</b><b>From 1 July</b>
+                <span>Charge before VAT</span><strong id="refuse-ex-vat-before">R0.00</strong><strong id="refuse-ex-vat-after">R0.00</strong>
+                <span>VAT at 15%</span><strong id="refuse-vat-before">R0.00</strong><strong id="refuse-vat-after">R0.00</strong>
+                <span class="summary-total">Total including VAT</span><strong class="summary-total" id="refuse-incl-before">R0.00</strong><strong class="summary-total" id="refuse-incl-after">R0.00</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <aside class="results" id="results" aria-live="polite" aria-atomic="false" aria-label="Your estimated tariff impact">
+        <div class="result-topline">
+          <span><i aria-hidden="true"></i>Your estimated impact</span>
+          <small>Monthly bill</small>
+        </div>
+
+        <div class="total-comparison">
+          <div class="before-total">
+            <span>Before 1 July</span>
+            <strong id="before-total">R0.00</strong>
+            <small>Current estimate</small>
+          </div>
+          <svg class="comparison-arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+          <div class="after-total">
+            <span>From 1 July 2026</span>
+            <strong id="grand-total">R0.00</strong>
+            <small>New estimate · VAT included</small>
+          </div>
+        </div>
+
+        <div class="total-vat-line"><span>VAT included in displayed total</span><strong id="total-vat">R0.00</strong></div>
+
+        <div class="impact-grid">
+          <div class="impact-card primary-impact">
+            <span>More each month</span>
+            <strong id="monthly-increase">+ R0.00</strong>
+          </div>
+          <div class="impact-card">
+            <span>More each year</span>
+            <strong id="annual-increase">+ R0.00</strong>
+          </div>
+          <div class="impact-card percentage-impact">
+            <span>Effective increase</span>
+            <strong id="effective-increase">+0%</strong>
+          </div>
+        </div>
+
+        <div class="copy-action">
+          <button type="button" id="share-button" disabled><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 8V5.5A2.5 2.5 0 0 1 10.5 3h8A2.5 2.5 0 0 1 21 5.5v8a2.5 2.5 0 0 1-2.5 2.5H16M5.5 8h8a2.5 2.5 0 0 1 2.5 2.5v8a2.5 2.5 0 0 1-2.5 2.5h-8A2.5 2.5 0 0 1 3 18.5v-8A2.5 2.5 0 0 1 5.5 8Z"/></svg><span>Copy my estimate</span></button>
+          <div class="copied" id="copied" role="status"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Copied</div>
+        </div>
+
+        <section class="contribution" aria-labelledby="contribution-title">
+          <div class="result-section-heading"><div><span>What drives the increase</span><h3 id="contribution-title">Service contribution</h3></div><small>Share of extra monthly cost</small></div>
+          <div class="contribution-bar" id="contribution-bar" aria-label="Contribution of each service to the total increase">
+            <i class="electricity" id="contribution-electricity"></i>
+            <i class="rates" id="contribution-rates"></i>
+            <i class="water-sanitation" id="contribution-water-sanitation"></i>
+            <i class="refuse" id="contribution-refuse"></i>
+          </div>
+        </section>
+
+        <section class="breakdown" id="breakdown" aria-labelledby="breakdown-title">
+          <div class="result-section-heading"><div><span>Detailed comparison</span><h3 id="breakdown-title">By municipal service</h3></div></div>
+          <div class="breakdown-head"><span>Service</span><b>Before</b><b>After</b><b>Change</b></div>
+          <div class="service-row service-electricity" data-service="electricity">
+            <span><i class="service-dot electricity"></i><span>Electricity<small id="electricity-result-note">City Power prepaid spend included</small></span></span><small id="electricity-before">R0.00</small><strong id="electricity-total">R0.00</strong><b id="electricity-change">+R0</b>
+            <i class="row-bar"><em id="electricity-bar"></em></i>
+          </div>
+          <div class="service-row service-rates" data-service="rates">
+            <span><i class="service-dot rates"></i><span>Property rates<small>VAT 0% · exempt</small></span></span><small id="rates-before">R0.00</small><strong id="rates-total">R0.00</strong><b id="rates-change">+R0</b>
+            <i class="row-bar"><em id="rates-bar"></em></i>
+          </div>
+          <div class="service-row service-water-sanitation" data-service="water-sanitation">
+            <span><i class="service-dot water"></i><span>Water &amp; sanitation<small id="water-sanitation-vat">Combined · includes R0.00 VAT</small><small id="water-sanitation-levy-result">No demand levy entered</small></span></span><small id="water-sanitation-before">R0.00</small><strong id="water-sanitation-total">R0.00</strong><b id="water-sanitation-change">+R0</b>
+            <i class="row-bar"><em id="water-sanitation-bar"></em></i>
+          </div>
+          <div class="service-row service-refuse" data-service="refuse">
+            <span><i class="service-dot refuse"></i><span>Refuse<small id="refuse-vat">Includes R0.00 VAT</small></span></span><small id="refuse-before">R0.00</small><strong id="refuse-total">R0.00</strong><b id="refuse-change">+R0</b>
+            <i class="row-bar"><em id="refuse-bar"></em></i>
+          </div>
+        </section>
+
+        <p class="result-note" id="result-note">Your estimate uses the City’s approved average increases from 1 July 2026.</p>
+      </aside>
+    </section>
+
+    <section class="methodology" aria-labelledby="method-title">
+      <div class="method-heading"><span>Method and limitations</span><h2 id="method-title">A useful planning estimate,<br>not a municipal invoice.</h2></div>
+      <div class="method-body">
+        <div class="limitation-note">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 8v5m0 3.5v.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p><strong>Why this is an estimate</strong><span>The City approved average increases for 2026/27, but the indexed, consolidated line-by-line tariff schedule was not yet available when this calculator was produced.</span></p>
+        </div>
+        <p>The estimate applies the approved increases to the City’s published 2025/26 tariff bands. Water consumption, the demand levy and sanitation are combined before 15% VAT is calculated. Refuse is kept separate and receives its own 15% VAT calculation. Property rates are shown at 0% because they are VAT-exempt. One-off sundry items such as pretermination notices, debt, interest and account adjustments are excluded.</p>
+        <details><summary>View calculation assumptions <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></summary><p>Property rates are annualised and divided by 12. The residential value exclusion is R300,000. Electricity and water are charged progressively by usage band after any free units entered. For water, enter the exact Step 1 quantity charged at R0 on the account; this can be prorated for the billing period. Electricity fixed, service, capacity and network charges are excluded. Sanitation uses the exact ERF size to select the applicable tariff band. Refuse is a fixed monthly charge selected by municipal property-value band. An optional demand management levy is included only when the user enters the current before-VAT amount, then estimated forward using the approved 12.5% average water increase.</p></details>
+        <div class="sources">
+          <span>Primary sources</span>
+          <a href="https://www.joburg.org.za/media_/Newsroom/Pages/2026-News-Articles/City-of-Johannesburg-Engages-Stakeholders-on-Approved-20262027-Tariffs.aspx" target="_blank" rel="noopener">Approved 2026/27 increases <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 5h5v5M10 14 19 5M19 14v5H5V5h5"/></svg></a>
+          <a href="https://joburg.org.za/documents_/Documents/Amendment%20of%20Tariff%20Charges/Consolidated-Tariffs-FY20252026.FINAL.pdf" target="_blank" rel="noopener">2025/26 consolidated tariff schedule <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 5h5v5M10 14 19 5M19 14v5H5V5h5"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><img src="assets/cra-logo.png" alt=""><p>Centre for Risk Analysis · Public-interest calculator</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
